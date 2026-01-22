@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Básica</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+        td {
+            padding: 5px;
+        }
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+        }
+        input {
+            width: 210px;
+            height: 40px;
+            font-size: 18px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align:center;">Calculadora</h2>
+
+    <!-- Caja de texto -->
+    <div style="text-align:center;">
+        <input type="text" id="pantalla" disabled>
+    </div>
+
+    <br>
+
+    <!-- Tabla de botones -->
+    <table border="1">
+        <tr>
+            <td><button onclick="agregar('7')">7</button></td>
+            <td><button onclick="agregar('8')">8</button></td>
+            <td><button onclick="agregar('9')">9</button></td>
+            <td><button onclick="agregar('/')">/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="agregar('4')">4</button></td>
+            <td><button onclick="agregar('5')">5</button></td>
+            <td><button onclick="agregar('6')">6</button></td>
+            <td><button onclick="agregar('*')">*</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="agregar('1')">1</button></td>
+            <td><button onclick="agregar('2')">2</button></td>
+            <td><button onclick="agregar('3')">3</button></td>
+            <td><button onclick="agregar('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="agregar('0')">0</button></td>
+            <td><button onclick="limpiar()">C</button></td>
+            <td><button onclick="calcular()">=</button></td>
+            <td><button onclick="agregar('+')">+</button></td>
+        </tr>
+    </table>
+
+    <!-- Conexión con JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
