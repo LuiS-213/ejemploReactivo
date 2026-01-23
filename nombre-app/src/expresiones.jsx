@@ -39,7 +39,6 @@ function Lista(){
                    </tr> 
                 </tbody>
             </table>
-
         </div>
     )
 }

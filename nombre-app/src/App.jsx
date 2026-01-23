@@ -1,5 +1,5 @@
 import Encabezado from "./encabezado";
-import Expresiones from "./assets/expresiones";
+import Expresiones from "./expresiones";
 
 function App(){
   return(
