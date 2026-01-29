@@ -1,3 +1,4 @@
+import './App.css'
 import Encabezado from "./encabezado";
 import Expresiones from "./expresiones";
 

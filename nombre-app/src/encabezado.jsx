@@ -1,7 +1,13 @@
-import  logo from './assets/logo.png' 
+import './encabezado.css'
+import  yutu from './assets/yutu.webp' 
+import  wats from './assets/wats.webp' 
+import  insta from './assets/insta.webp' 
+import  face from './assets/face.webp' 
+import  logo from './assets/logo.webp' 
 function Encabezado(){
+    
     return (
-        <div>
+        <div className='encabezado'>
             <Logotipo/>
             <Menu/>
             <Redes/>
@@ -10,7 +16,7 @@ function Encabezado(){
 }
 function Logotipo(){
     return(
-        <div>
+        <div className='logo'>
             <img src={logo} alt="" />
         </div>
     )
@@ -18,7 +24,7 @@ function Logotipo(){
 
 function Menu (){
     return (
-        <div>
+        <div className='Menu'>
             <ul>
                 <li>Inicio</li>
                 <li>Acerca de</li>
@@ -32,12 +38,12 @@ function Menu (){
 
 function Redes(){
     return(
-        <div>
+        <div className='Redes'>
             <ul>
-                <li>Facebook</li>
-                <li>Whatsapp</li>
-                <li>Intagram</li>
-                <li>Youtube</li>
+                <img src={face} alt="" />
+                <img src={wats} alt="" />
+                <img src={insta} alt="" />
+                <img src={yutu} alt="" />
             </ul>
         </div>
     )

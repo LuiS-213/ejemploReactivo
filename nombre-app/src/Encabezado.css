@@ -1,0 +1,49 @@
+.encabezado{
+    background-color: #003366;
+    display: flex;
+    color: #D4AF37;
+    height: auto;
+    align-items: center;
+    align-content: center;
+    width:100%;
+    justify-content: space-around;
+}
+.Menu{
+    display: inline-block;
+    padding-right: 50px;
+    padding-left: 70px;
+    vertical-align: middle;
+}
+.Menu ul{
+    list-style-type: none;
+    display: flex;
+}
+.Menu ul li{
+    margin-right: 20px;
+    cursor: pointer;
+    
+}
+
+.Menu ul li:hover {
+    color: #FFFFFF;
+}
+
+
+.logo{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.logo img{
+    width: 100px;
+    height: auto;
+}
+
+.Redes{
+    display: flex;
+}
+
+.Redes img{
+    height: 80px;
+    width: auto;
+}
