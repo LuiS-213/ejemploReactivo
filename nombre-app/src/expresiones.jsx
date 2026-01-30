@@ -1,45 +1,39 @@
+import halo from './assets/halo.webp'
+import halo from './assets/arto.webp'
+import halo from './assets/halo.webp'
 function Expresiones(){
-    const nombre = 'Luis';
-    const apellidos='Hernandez'
     return(
         <div>
-            <h2>Expresiones</h2>
-            <h3>Tu nombre es:{nombre } y tus apellidos son:{apellidos}</h3>
-            <Lista/>
+            <Uno/>
+            <Dos/>
+            <Tres/>
         </div>
     )
-    
 }
 
-function Lista(){
-    const users =[
-        {id: 1, name: 'Luis', role:'web designer'},
-        {id: 2, name: 'Jessi', role: 'developer'},
-        {id: 3, name: 'Juan', role:'webscript'},
-    ]
+function Uno(){
     return(
         <div>
-            <table>
-                <tbody>
-                   <tr>
-                        <th> Nombre </th>
-                        <th> Role </th>
-                   </tr>
-                   <tr>
-                        {
-                            users.map(function(user,index){
-                                return (
-                                    <tr key={index}>
-                                    <td>(user.name)</td>
-                                    <td>(user.role)</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                   </tr> 
-                </tbody>
-            </table>
+            <img src="" alt="" />
+            <h2></h2>
         </div>
     )
 }
-export default Expresiones
+
+function Dos(){
+    return(
+        <div>
+            <img src="" alt="" />
+            <h2></h2>
+        </div>
+    )
+}
+
+function Tres(){
+    return(
+        <div>
+            <img src="" alt="" />
+            <h2></h2>
+        </div>
+    )
+}
