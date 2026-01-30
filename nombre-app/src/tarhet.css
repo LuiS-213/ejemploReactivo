@@ -1,14 +1,25 @@
-.Tarjetas{
-    margin-top: 30px;
+.cuadro{
+    margin-top: 15px;
     padding: 30px;
-    background-color: #003366;
+    background-color: #000000;
     display: flex;
     height: 40%;
     justify-content: space-around;
+    border-radius: 10px;
 }
 
-.info{
-    background-color: #D4AF37;
-    color: black;
+.tarjetas{
+    margin: 15px;
+    color: white;
+    text-align: center;
     vertical-align: middle;
+    align-content: center;
+    justify-content: center;
+    
+}
+
+.tarjetas img{
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
 }
