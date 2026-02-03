@@ -6,33 +6,36 @@ import Arto from './assets/arto.webp'
 function Expresiones(){
     return(
         <div className="cuadro">
-        <Uno/>
-        <Dos/>
-        <Tres/>
+        <Uno name='Halo'  descripcion='Juego que trata de derribar al Covenant'/>
+        <Dos name='Hollow Knigth' descripcion='Debes unirte al vacio para derrotar al destello'/>
+        <Tres name='Dark Souls' descripcion='Eres el elegiod, eres el alma oscura'/>
         </div>
     )
 }
-function Uno(){
+function Uno(props){
     return(
         <div className="tarjetas">
         <img src={Halo} alt="" />
-        <h2>Halo Infinity</h2>
+        <h2>{props.name}</h2>
+        <h3>{props.descripcion}</h3>
         </div>
     )
 }
-function Dos(){
+function Dos(props){
     return(
         <div className="tarjetas">
         <img src={Hollow} alt="" />
-        <h2>Hollow Knigth</h2>
+        <h2>{props.name}</h2>
+        <h3>{props.descripcion}</h3>
         </div>
     )
 }
-function Tres(){
+function Tres(props){
     return(
         <div className="tarjetas">
         <img src={Arto} alt="" />
-        <h2>Dark Souls</h2>
+        <h2>{props.name}</h2>
+        <h3>{props.descripcion}</h3>
         </div>
     )
 }
