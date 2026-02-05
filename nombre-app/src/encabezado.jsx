@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types'
 import './encabezado.css'
 import  yutu from './assets/yutu.webp' 
 import  wats from './assets/wats.webp' 
 import  insta from './assets/insta.webp' 
 import  face from './assets/face.webp' 
 import  logo from './assets/logo.png' 
-function Encabezado(){
+function Encabezado({cambiarVista}){
     
     return (
         <div className='encabezado'>
             <Logotipo/>
-            <Menu/>
+            <Menu cambiarVista={cambiarVista}/>
             <Redes/>
         </div>
     )
@@ -22,15 +23,15 @@ function Logotipo(){
     )
 }
 
-function Menu (){
+function Menu ({cambiarVista}){
     return (
         <div className='Menu'>
             <ul>
-                <li>Inicio</li>
-                <li>Acerca de</li>
-                <li>Productos</li>
-                <li>Contactos</li>
-                <li>Sucursales</li>
+                <li onClick={()=>cambiarVista("Inicio")}>Inicio</li>
+                <li onClick={()=>cambiarVista("AcercaDe")}>Acerca de</li>
+                <li onClick={()=>cambiarVista("Productos")}>Productos</li>
+                <li onClick={()=>cambiarVista("Contactos")}>Contactos</li>
+                <li onClick={()=>cambiarVista("Sucursales")}>Sucursales</li>
             </ul>
         </div>
     )
@@ -48,5 +49,11 @@ function Redes(){
         </div>
     )
 }
+Menu.propTypes={
+    cambiarVista: PropTypes.func.isRequired
+};
 
+Encabezado.propTypes={
+    cambiarVista: PropTypes.func.isRequired
+};
 export default Encabezado
