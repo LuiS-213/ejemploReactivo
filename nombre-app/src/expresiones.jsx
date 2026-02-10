@@ -1,3 +1,4 @@
+import {APIProvider, Map, AdvancedMarker,Pin} from '@vis.gl/react-google-maps';
 import './tarhet.css'
 import Hollow from './assets/hollow.webp'
 import Halo from './assets/halo.webp'
@@ -73,3 +74,6 @@ function Tres(props){
 }
 
 export default Expresiones
+
+//*esto va dentro del inmcio o letras  antes del return
+//const position ={lat:19.4326, lng:-99.1332};
