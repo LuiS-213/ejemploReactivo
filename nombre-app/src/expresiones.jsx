@@ -2,6 +2,7 @@
 import './tarhet.css'
 import Productos from './productos'
 import Inicio from './inicio'
+import Contactos from './Contactos'
 
 function Expresiones({vista}){
     const vistas={
@@ -20,12 +21,13 @@ function Expresiones({vista}){
 
 
 function AcercaDe(){
-    return <h2>Acerca de nosotros</h2>
+    return (
+        <div>
+            <h2>Acerca de nosotro</h2>
+         </div>
+    )
 }
 
-function Contactos(){
-    return <h2>Contactate con nosotros</h2>
-}
 function Sucursales(){
     return <h2>Visita nuestras sucursales</h2>
 }
