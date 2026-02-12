@@ -1,0 +1,26 @@
+.Inicio{
+    display: flex;
+}
+
+.Vertical{
+    margin-left: 70px;
+}
+.Vertical img{
+    height: 530px;
+    width: auto;
+    margin: 10px;
+}
+
+.Horizontal img{
+    width: 450px;
+    height: auto;
+    margin: 10px;
+}
+.Text{
+    width: 800px;
+    font-size: 45px;
+    text-align: center;
+    vertical-align: middle;
+    align-content: center;
+    justify-content: center;
+}
