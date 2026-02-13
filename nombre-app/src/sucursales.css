@@ -1,0 +1,26 @@
+.sucursal{
+    color: #D4AF37;
+    padding: 20px;
+    margin:40px;
+    align-items: center;
+   align-content: center;
+   vertical-align: middle;
+   width: 600px;
+    
+}
+.div{
+    color: #D4AF37;
+    display: flex;
+   align-items: center;
+   align-content: center;
+   vertical-align: middle;
+   justify-content: space-around;
+   height: 500px;
+   width: 1800px;
+}
+
+.main{
+    text-align: center;
+    color: #D4AF37;
+    
+}

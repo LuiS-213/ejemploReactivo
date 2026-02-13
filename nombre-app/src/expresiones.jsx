@@ -3,6 +3,7 @@ import './tarhet.css'
 import Productos from './productos'
 import Inicio from './inicio'
 import Contactos from './Contactos'
+import Sucursales from './sucursales'
 
 function Expresiones({vista}){
     const vistas={
@@ -28,9 +29,7 @@ function AcercaDe(){
     )
 }
 
-function Sucursales(){
-    return <h2>Visita nuestras sucursales</h2>
-}
+
 
 export default Expresiones
 

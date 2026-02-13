@@ -17,8 +17,8 @@ function Contactos() {
       </label>
 
       <label>
-        Créditos
-        <input type="text" placeholder="App Webtoon" />
+        Mensaje
+        <input type="text" placeholder="Videojuegosss" />
       </label>
 
       <button type="submit">Enviar</button>
