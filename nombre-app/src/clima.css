@@ -1,0 +1,17 @@
+.divClima{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    
+}
+
+.divClima img{
+    height: 70px;
+    width: auto;
+}
+
+.divClima p{
+    font-size: larger;
+}

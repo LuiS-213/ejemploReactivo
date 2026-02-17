@@ -5,6 +5,7 @@ import  wats from './assets/wats.webp'
 import  insta from './assets/insta.webp' 
 import  face from './assets/face.webp' 
 import  logo from './assets/logo.png' 
+import Clima from './clima'
 function Encabezado({cambiarVista}){
     
     return (
@@ -46,6 +47,7 @@ function Redes(){
                 <img src={insta} alt="" />
                 <img src={yutu} alt="" />
             </ul>
+            <Clima/>
         </div>
     )
 }
