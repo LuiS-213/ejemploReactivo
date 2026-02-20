@@ -1,47 +1,46 @@
 import './tarhet.css'
-import Hollow from './assets/hollow.webp'
-import Halo from './assets/halo.webp'
-import Arto from './assets/arto.webp'
+import { useEffect, useState } from 'react';
+import api from './services/api'
+
 function Productos(){
-    return(
-    <>
-    <Uno name='Halo'  descripcion='Juego que trata de derribar al Covenant'/>
-    <Dos name='Hollow Knigth' descripcion='Debes unirte al vacio para derrotar al destello'/>
-    <Tres name='Dark Souls' descripcion='Eres el elegiod, eres el alma oscura'/>
-    </>
-    )
-  }
+    const[productos, setProductos]=useState([]);
+    const[loading, setLoading]=useState(true);
 
+    useEffect(()=>{
+        const obtenerProductos=async ()=>{
+            try{
+                const response=await api.get("/products");
+                setProductos(response.data);
+            } catch (error){
+                console.error("Erroro al obtener productos:", error);
+            } finally{
+                setLoading(false);
+            }
+        };
+        obtenerProductos();
+    }, []);
+    if (loading) return <p>Cargando.....</p>
 
-
-
-
-function Uno(props){
-    return(
-        <div className="tarjetas">
-        <img src={Halo} alt="" />
-        <h2>{props.name}</h2>
-        <h3>{props.descripcion}</h3>
+     return(
+        <div>
+            <main className='Main'>
+                <header>
+                    <h1>Productos</h1>
+                </header>
+            <div className='cuadro'>
+                {productos.map((producto)=>(
+                    <article key={producto.id}>
+                        <div className='tarjetas'>
+                            <h2>{producto.title}</h2>
+                            <img src={producto.image} alt="" />
+                            <h3>${producto.price}</h3>
+                        </div>
+                    </article>
+                ))}
+            </div>
+            </main>
         </div>
-    )
-}
-function Dos(props){
-    return(
-        <div className="tarjetas">
-        <img src={Hollow} alt="" />
-        <h2>{props.name}</h2>
-        <h3>{props.descripcion}</h3>
-        </div>
-    )
-}
-function Tres(props){
-    return(
-        <div className="tarjetas">
-        <img src={Arto} alt="" />
-        <h2>{props.name}</h2>
-        <h3>{props.descripcion}</h3>
-        </div>
-    )
+     )
 }
 
 export default Productos
