@@ -4,11 +4,12 @@ import Productos from './productos'
 import Inicio from './inicio'
 import Contactos from './Contactos'
 import Sucursales from './sucursales'
+import Usuarios from './usuarios'
 
 function Expresiones({vista}){
     const vistas={
         Inicio:<Inicio/>,
-        AcercaDe:<AcercaDe/>,
+        Usuarios:<Usuarios/>,
         Productos:<Productos/>,
         Contactos:<Contactos/>,
         Sucursales:<Sucursales/>
@@ -20,14 +21,6 @@ function Expresiones({vista}){
     )
 }
 
-
-function AcercaDe(){
-    return (
-        <div>
-            <h2>Acerca de nosotro</h2>
-         </div>
-    )
-}
 
 
 

@@ -1,6 +1,8 @@
 import './tarhet.css'
 import { useEffect, useState } from 'react';
 import api from './services/api'
+import Registro from './registrarP';
+
 
 function Productos(){
     const[productos, setProductos]=useState([]);
@@ -28,6 +30,7 @@ function Productos(){
                     <h1>Productos</h1>
                 </header>
             <div className='cuadro'>
+                <Registro/>
                 {productos.map((producto)=>(
                     <article key={producto.id}>
                         <div className='tarjetas'>
