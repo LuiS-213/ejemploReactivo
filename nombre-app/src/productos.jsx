@@ -24,13 +24,13 @@ function Productos(){
     if (loading) return <p>Cargando.....</p>
 
      return(
-        <div>
+        <div className='dos'>
             <main className='Main'>
                 <header>
                     <h1>Productos</h1>
                 </header>
+                 <Registro/>
             <div className='cuadro'>
-                <Registro/>
                 {productos.map((producto)=>(
                     <article key={producto.id}>
                         <div className='tarjetas'>

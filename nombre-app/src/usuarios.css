@@ -1,0 +1,23 @@
+.icono{
+
+    height:40px;
+    width: auto;
+
+}
+
+.main{
+    align-content: center;
+    align-items: center;
+    vertical-align: middle;
+    padding: 50px;
+    color: white;
+    text-align: center;
+
+}
+
+.tabla-usuarios{
+    align-items: center;
+    vertical-align: middle;
+    align-content: center;
+    margin: 60px;
+}

@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 import api from './services/api'
+import edit from './assets/edit.png'
+import add from './assets/image.png'
+import delet from './assets/delete.png'
+import './usuarios.css'
+import RegistroU from './registrarU';
+
 function Usuarios(){
  const[usuarios, setUsuarios]=useState([]);
     const[loading, setLoading]=useState(true);
@@ -19,23 +25,60 @@ function Usuarios(){
     }, []);
 if (loading) return <p>Cargando.....</p>
     return(
-        <div>
-            <main className='Main'>
-                <header>
-                    <h1>Usuarios</h1>
-                </header>
-            <div className='cuadro'>
-                {usuarios.map((usuario)=>(
-                    <article key={usuario.id}>
-                        <div className='tarjetas'>
-                            <h2>{usuario.username}</h2>
-                             <h3>{usuario.email}</h3>
-                            <h3>{usuario.password}</h3>
-                        </div>
-                    </article>
-                ))}
-            </div>
-            </main>
+        
+        <div className='main'>
+        <RegistroU/>
+            <table className="tabla-usuarios">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Añadir</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {usuarios.map((usuario) => (
+            <tr key={usuario.id}>
+                <td>{usuario.id}</td>
+                <td>{usuario.username}</td>
+                <td>{usuario.email}</td>
+                <td>{usuario.password}</td>
+
+                {/* Botones con imágenes */}
+                <td>
+                    <img 
+                        src={add}
+                        alt="Añadir" 
+                        className="icono"
+                        onClick={() => handleAdd(usuario.id)}
+                    />
+                </td>
+
+                <td>
+                    <img 
+                        src={edit}
+                        alt="Editar" 
+                        className="icono"
+                        onClick={() => handleEdit(usuario.id)}
+                    />
+                </td>
+
+                <td>
+                    <img 
+                        src={delet}
+                        alt="Eliminar" 
+                        className="icono"
+                        onClick={() => handleDelete(usuario.id)}
+                    />
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
         </div>
      )
 }

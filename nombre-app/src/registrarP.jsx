@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import api from "./services/api";
+import './regis.css' 
 
 function Registro(){
 
@@ -23,9 +24,9 @@ function Registro(){
     }
 
     return(
-        <div>
+        <div className="main">
             <h2>Registrar Producto</h2>
-            <form  onSubmit={handleSubmit}>
+            <form  className='form' onSubmit={handleSubmit}>
                 <input 
                 type="text" 
                 placeholder="Titulo" 

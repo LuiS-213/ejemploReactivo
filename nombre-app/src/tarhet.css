@@ -27,3 +27,8 @@
     object-fit: contain;
     margin: 15px 0;
 }
+
+.dos{
+    align-items: center;
+    text-align: center;
+}
