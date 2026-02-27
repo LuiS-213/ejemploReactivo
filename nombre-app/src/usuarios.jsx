@@ -23,6 +23,22 @@ function Usuarios(){
         };
         obtenerUsuarios();
     }, []);
+
+    const removeUsuario = async (usuarioId) => {
+  try {
+    const response = await api.delete(`/users/${usuarioId}`);
+    alert("Usuario eliminado correctamente ");
+    console.log(response.data);
+
+    return true;
+
+  } catch (error) {
+    alert("Error al eliminar usuario ");
+    console.error(error);
+    return false;
+  }
+};
+    
 if (loading) return <p>Cargando.....</p>
     return(
         
@@ -68,19 +84,18 @@ if (loading) return <p>Cargando.....</p>
                 </td>
 
                 <td>
-                    <img 
-                        src={delet}
-                        alt="Eliminar" 
-                        className="icono"
-                        onClick={() => handleDelete(usuario.id)}
-                    />
+                    <button onClick={()=> removeUsuario(usuario.id)}>Eliminar</button>
+                    
                 </td>
             </tr>
         ))}
     </tbody>
 </table>
         </div>
-     )
+ 
+)
+
 }
+
 
 export default Usuarios

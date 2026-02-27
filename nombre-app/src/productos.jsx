@@ -21,6 +21,22 @@ function Productos(){
         };
         obtenerProductos();
     }, []);
+
+    const removeProducto = async (productoId) => {
+  try {
+    const response = await api.delete(`/users/${productoId}`);
+    alert("Producto eliminado correctamente ");
+    console.log(response.data);
+
+    return true;
+
+  } catch (error) {
+    alert("Error al eliminar producto ");
+    console.error(error);
+    return false;
+  }
+};
+
     if (loading) return <p>Cargando.....</p>
 
      return(
@@ -37,6 +53,7 @@ function Productos(){
                             <h2>{producto.title}</h2>
                             <img src={producto.image} alt="" />
                             <h3>${producto.price}</h3>
+                            <button onClick={()=>removeProducto(producto.id)}>ELIMINAR</button>
                         </div>
                     </article>
                 ))}
