@@ -5,6 +5,7 @@ import Inicio from './inicio'
 import Contactos from './Contactos'
 import Sucursales from './sucursales'
 import Usuarios from './usuarios'
+import Carrito from './carrito'
 
 function Expresiones({vista}){
     const vistas={
@@ -12,7 +13,8 @@ function Expresiones({vista}){
         Usuarios:<Usuarios/>,
         Productos:<Productos/>,
         Contactos:<Contactos/>,
-        Sucursales:<Sucursales/>
+        Sucursales:<Sucursales/>,
+        Carrito:<Carrito/>
     }
     return(
         <div className="cuadro">

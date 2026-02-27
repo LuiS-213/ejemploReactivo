@@ -6,11 +6,10 @@
 }
 
 .main{
-    align-content: center;
-    align-items: center;
-    vertical-align: middle;
+    justify-content: flex-start;
     padding: 50px;
     color: white;
+    display: flex;
     text-align: center;
 
 }
