@@ -9,9 +9,9 @@ import RegistroU from './registrarU';
 function Usuarios(){
  const[usuarios, setUsuarios]=useState([]);
     const[loading, setLoading]=useState(true);
+    const[usuarioSeleccionado, setUsuarioS]=useState(null);
 
-    useEffect(()=>{
-        const obtenerUsuarios=async ()=>{
+    const obtenerUsuarios=async ()=>{
             try{
                 const response=await api.get("/users");
                 setUsuarios(response.data);
@@ -21,6 +21,8 @@ function Usuarios(){
                 setLoading(false);
             }
         };
+
+    useEffect(()=>{
         obtenerUsuarios();
     }, []);
 
@@ -44,6 +46,7 @@ if (loading) return <p>Cargando.....</p>
         
         <div className='main'>
         <RegistroU/>
+        
             <table className="tabla-usuarios">
     <thead>
         <tr>
@@ -75,12 +78,8 @@ if (loading) return <p>Cargando.....</p>
                 </td>
 
                 <td>
-                    <img 
-                        src={edit}
-                        alt="Editar" 
-                        className="icono"
-                        onClick={() => handleEdit(usuario.id)}
-                    />
+                        < button onClick={() => setUsuarioS(usuario)}>Editar</button>
+
                 </td>
 
                 <td>
