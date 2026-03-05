@@ -1,88 +1,93 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
-import api from "./services/api";
-import './regis.css'
+import React, { useState, useEffect } from "react";
+import api from "./services/api"; // Axios suele estar dentro de tu instancia 'api'
+import './regis.css';
 
-function RegistroU(usuarioE, limpiarSeleccion, onActualizacion){
-    const[id,setId]=useState('');
-    const[username,setUsername]=useState('');
-    const[email,setEmail]=useState('');
-    const[password,setPassword]=useState('');
+// 1. Desestructuramos las props correctamente
+function RegistroU({ usuarioE, limpiarSeleccion, onActualizacion }) {
+    const [id, setId] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    useEffect(()=>{
-        if (usuarioE){
-            setUsername(usuarioE,username);
-            setEmail(usuarioE,email)
-            setPassword('');
-        }else{
-            resteForm();
+    useEffect(() => {
+        if (usuarioE) {
+            // 2. Acceso correcto a las propiedades del objeto
+            setId(usuarioE.id || '');
+            setUsername(usuarioE.username || '');
+            setEmail(usuarioE.email || '');
+            setPassword(''); // Normalmente no se carga el password por seguridad
+        } else {
+            resetForm();
         }
-    },[usuarioE]);
+    }, [usuarioE]);
 
-    const resteForm=()=>{
+    const resetForm = () => {
+        setId('');
         setUsername('');
         setEmail('');
         setPassword('');
     };
 
-    const handleSubmit =async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const nuevoUsuario={id,username, email, password};
-        try{
-            if(usuarioE){
-            const respuesta= await api.put(`/users/ ${usuarioE.id}`, nuevoUsuario);
-            console.log('usuario actualizado:', respuesta.data);
-            alert('Usuario actualizado');
-            limpiarSeleccion();
-            }else{
-                const respuesta= await api.post('/users/',nuevoUsuario);
-                console.log('Uusuario Registrado', respuesta.data);
-                alert('Usuario guardado con exito')
+        const nuevoUsuario = { id, username, email, password };
+        
+        try {
+            if (usuarioE) {
+                // 3. Eliminamos el espacio en blanco de la URL
+                const respuesta = await api.put(`/users/${usuarioE.id}`, nuevoUsuario);
+                console.log('Usuario actualizado:', respuesta.data);
+                alert('Usuario actualizado');
+                if (limpiarSeleccion) limpiarSeleccion();
+            } else {
+                const respuesta = await api.post('/users/', nuevoUsuario);
+                console.log('Usuario Registrado', respuesta.data);
+                alert('Usuario guardado con éxito');
             }
-            resteForm();
+            
+            resetForm();
             if (onActualizacion) onActualizacion();
-        } catch(error){
-            console.error('Error de Registro:', error)
+        } catch (error) {
+            console.error('Error de Registro:', error);
+            alert('Hubo un error en la operación');
         }
-    }
+    };
 
-    return(
+    return (
         <div className="main">
-            <h2>Registrar Usuario</h2>
-            <form  className='form' onSubmit={handleSubmit}>
+            <h2>{usuarioE ? 'Editar Usuario' : 'Registrar Usuario'}</h2>
+            <form className='form' onSubmit={handleSubmit}>
                 <input 
-                type="number" 
-                placeholder="Id" 
-                value={id} 
-                onChange={(e)=> setId(e.target.value)} 
+                    type="number" 
+                    placeholder="Id" 
+                    value={id} 
+                    onChange={(e) => setId(e.target.value)} 
+                    disabled={!!usuarioE} // Opcional: deshabilitar ID si estás editando
                 />
-
                 <input 
-                type="text" 
-                placeholder="User Name" 
-                value={username} 
-                onChange={(e)=> setUsername(e.target.value)} 
+                    type="text" 
+                    placeholder="User Name" 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
                 />
-
                 <input 
-                type="text" 
-                placeholder="Email" 
-                value={email} 
-                onChange={(e)=> setEmail(e.target.value)} 
+                    type="email" // Cambiado a type email para validación básica
+                    placeholder="Email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
                 />
-
                 <input 
-                type="text" 
-                placeholder="Password" 
-                value={password} 
-                onChange={(e)=> setPassword(e.target.value)} 
+                    type="password" // Cambiado a type password para ocultar caracteres
+                    placeholder="Password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
                 />
-
-                <button type="submit">Registrar</button>
-
+                <button type="submit">
+                    {usuarioE ? 'Actualizar' : 'Registrar'}
+                </button>
             </form>
         </div>
-    )
-
+    );
 }
-export default RegistroU
+
+export default RegistroU; 
