@@ -6,6 +6,8 @@ import  insta from './assets/insta.webp'
 import  face from './assets/face.webp' 
 import  logo from './assets/logo.png' 
 import Clima from './clima'
+import { useAuth } from './AuthContext'
+
 function Encabezado({cambiarVista}){
     
     return (
@@ -25,15 +27,24 @@ function Logotipo(){
 }
 
 function Menu ({cambiarVista}){
+    const {isLoggedIn} = useAuth();
     return (
         <div className='Menu'>
             <ul>
                 <li onClick={()=>cambiarVista("Inicio")}>Inicio</li>
-                <li onClick={()=>cambiarVista("Usuarios")}>Usuarios</li>
                 <li onClick={()=>cambiarVista("Productos")}>Productos</li>
                 <li onClick={()=>cambiarVista("Contactos")}>Contactos</li>
                 <li onClick={()=>cambiarVista("Sucursales")}>Sucursales</li>
+
+                {isLoggedIn ? (
+                    <>
                 <li onClick={()=>cambiarVista("Carrito")}>Carrito</li>
+                <li onClick={()=>cambiarVista("Usuarios")}>Usuarios</li>
+                    </>
+                ):(
+
+                <li onClick={()=>cambiarVista("InicioS")}>Inicio Sesion</li>
+                )}
             </ul>
         </div>
     )
