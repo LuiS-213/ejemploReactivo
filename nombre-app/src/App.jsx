@@ -12,14 +12,18 @@ function App(){
 
   return (
     // 2. Envuelve TODO con AuthProvider
-    <AuthProvider>
+          <AuthProvider>
+
       <div>
+
         <Encabezado cambiarVista={setVista}/>
-        <Expresiones vista={vista}/>
+        <Expresiones vista={vista} chVista={setVista}/>
+
         <Text name='Luis'/>
         <Footer/>
       </div>
-    </AuthProvider>
+          </AuthProvider>
+
   )
 }
 
