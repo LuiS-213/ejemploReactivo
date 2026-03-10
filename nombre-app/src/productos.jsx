@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import api from './services/api'
 import Registro from './registrarP';
 
+
 function Productos(){
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,7 +13,6 @@ function Productos(){
     const obtenerProductos = async () => {
         try {
             const response = await api.get("/products");
-            setProductos(response.data);
         } catch (error) {
             console.error("Error al obtener productos:", error);
         } finally {

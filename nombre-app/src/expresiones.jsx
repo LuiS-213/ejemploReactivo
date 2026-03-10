@@ -7,6 +7,7 @@ import Sucursales from './sucursales'
 import Usuarios from './usuarios'
 import Carrito from './carrito'
 import InicioS from './InicioS'
+import Categorias from './Categorias'
 
 function Expresiones({vista, chVista}){
     const vistas={
@@ -16,6 +17,7 @@ function Expresiones({vista, chVista}){
         Contactos:<Contactos/>,
         Sucursales:<Sucursales/>,
         Carrito:<Carrito/>,
+        Categorias:<Categorias/>,
         InicioS:<InicioS chVista={chVista}/>
     }
     return(
