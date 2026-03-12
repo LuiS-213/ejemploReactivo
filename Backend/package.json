@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Esta aplicacion perm,ite registrar productos, pedidos en una base de datos",
+  "license": "ISC",
+  "author": "Luis Angel Hernadez",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body": "^5.1.0",
+    "express": "^5.2.1",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.19.1",
+    "parser": "^0.1.4",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
