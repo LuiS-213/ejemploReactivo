@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "./AuthContext"
 import axios from "axios";
 import api from "./services/api";
+import './login.css'
 
 const Login =({cheVista})=>{
     const{login}=useAuth();
@@ -29,30 +30,30 @@ const Login =({cheVista})=>{
     };
 
     return (
-        <div>
-            <form className="form" onSubmit={handleSubmit}>
-                
-                <input 
-                    type="text" 
-                    placeholder="ejemplo@correo"
-                    value={username}
-                    onChange={(e)=>setUsername(e.target.value)}
-                />
+    <div className="login-wrapper">
+        <form className="login-form" onSubmit={handleSubmit}>
+            
+            <input 
+                type="text" 
+                placeholder="ejemplo@correo"
+                value={username}
+                onChange={(e)=>setUsername(e.target.value)}
+            />
 
-                <input 
-                    type="password" 
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
-                />
+            <input 
+                type="password" 
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
+            />
 
-                <button type="submit">
-                    Entrar
-                </button>
+            <button type="submit">
+                Entrar
+            </button>
 
-            </form>
-        </div>
-    );
+        </form>
+    </div>
+);
 }
 
 
