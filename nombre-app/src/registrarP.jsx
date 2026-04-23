@@ -2,109 +2,124 @@ import React, { useState, useEffect } from "react";
 import api from "./services/api";
 import './regis.css';
 
-// 1. Añadimos las props para recibir datos del padre
 function Registro({ productoE, limpiarSeleccion, onActualizacion }) {
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState('');
-    const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
-    const [image, setImage] = useState('');
 
-    // 2. useEffect para detectar si vamos a editar un producto existente
+    const [nombre, setNombre] = useState('');
+    const [descripcion, setDescripcion] = useState('');
+    const [precio, setPrecio] = useState('');
+    const [stock, setStock] = useState('');
+    const [idCategoria, setIdCategoria] = useState('');
+
     useEffect(() => {
+
         if (productoE) {
-            setTitle(productoE.title || '');
-            setPrice(productoE.price || '');
-            setDescription(productoE.description || '');
-            setCategory(productoE.category || '');
-            setImage(productoE.image || '');
+
+            setNombre(productoE.nombre || '');
+            setDescripcion(productoE.descripcion || '');
+            setPrecio(productoE.precio || '');
+            setStock(productoE.stock || '');
+            setIdCategoria(productoE.id_categoria || '');
+
         } else {
             resetForm();
         }
+
     }, [productoE]);
 
     const resetForm = () => {
-        setTitle('');
-        setPrice('');
-        setDescription('');
-        setCategory('');
-        setImage('');
+        setNombre('');
+        setDescripcion('');
+        setPrecio('');
+        setStock('');
+        setIdCategoria('');
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const nuevoProducto = { title, price, description, category, image };
-        
+
+        const nuevoProducto = {
+            nombre,
+            descripcion,
+            precio,
+            stock,
+            id_categoria: idCategoria
+        };
+
         try {
+
             if (productoE) {
-                // MODO EDICIÓN (PUT)
-                const respuesta = await api.put(`/products/${productoE.id}`, nuevoProducto);
-                console.log('Producto actualizado:', respuesta.data);
-                alert('Producto actualizado con éxito');
+
+                await api.put(`/producto/${productoE.id}`, nuevoProducto);
+                alert('Producto actualizado');
+
                 if (limpiarSeleccion) limpiarSeleccion();
+
             } else {
-                // MODO CREACIÓN (POST)
-                const respuesta = await api.post('/products', nuevoProducto);
-                console.log('Producto registrado:', respuesta.data);
-                alert('Producto guardado con éxito');
+
+                await api.post('/productos', nuevoProducto);
+                alert('Producto creado');
             }
-            
+
             resetForm();
-            if (onActualizacion) onActualizacion(); // Refresca la lista en el componente padre
+
+            if (onActualizacion) onActualizacion();
+
         } catch (error) {
-            console.error('Error en la operación:', error);
-            alert('Hubo un error al procesar el producto');
+            console.error(error);
+            alert('Error en la operación');
         }
     };
 
     return (
         <div className="main">
-            {/* Título dinámico */}
-            <h2>{productoE ? 'Editar Producto' : 'Registrar Producto'}</h2>
-            
-            <form className='form' onSubmit={handleSubmit}>
-                <input 
-                    type="text" 
-                    placeholder="Titulo" 
-                    value={title} 
-                    onChange={(e) => setTitle(e.target.value)} 
-                    required 
+
+            <h2>
+                {productoE ? 'Editar Producto' : 'Registrar Producto'}
+            </h2>
+
+            <form className="form" onSubmit={handleSubmit}>
+
+                <input
+                    type="text"
+                    placeholder="Nombre"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
                 />
 
-                <input 
-                    type="number" 
-                    placeholder="Precio" 
-                    value={price} 
-                    onChange={(e) => setPrice(e.target.value)} 
-                    required 
+                <input
+                    type="text"
+                    placeholder="Descripción"
+                    value={descripcion}
+                    onChange={(e) => setDescripcion(e.target.value)}
                 />
 
-                <input 
-                    type="text" 
-                    placeholder="Descripcion" 
-                    value={description} 
-                    onChange={(e) => setDescription(e.target.value)} 
+                <input
+                    type="number"
+                    placeholder="Precio"
+                    value={precio}
+                    onChange={(e) => setPrecio(e.target.value)}
                 />
 
-                <input 
-                    type="text" 
-                    placeholder="Categoria" 
-                    value={category} 
-                    onChange={(e) => setCategory(e.target.value)} 
+                <input
+                    type="number"
+                    placeholder="Stock"
+                    value={stock}
+                    onChange={(e) => setStock(e.target.value)}
                 />
 
-                <input 
-                    type="text" 
-                    placeholder="URL Imagen" 
-                    value={image} 
-                    onChange={(e) => setImage(e.target.value)} 
+                <input
+                    type="number"
+                    placeholder="ID Categoría"
+                    value={idCategoria}
+                    onChange={(e) => setIdCategoria(e.target.value)}
                 />
 
-                {/* Texto del botón dinámico */}
                 <button type="submit">
-                    {productoE ? 'Actualizar Producto' : 'Registrar Producto'}
+                    {productoE ? 'Actualizar' : 'Registrar'}
                 </button>
+
             </form>
+
         </div>
     );
 }

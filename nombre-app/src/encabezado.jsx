@@ -26,34 +26,36 @@ function Logotipo(){
     )
 }
 
-function Menu ({cambiarVista}){
-    const {isLoggedIn, logout} = useAuth();
-    const handleLogout=()=>{
+function Menu({ cambiarVista }) {
+
+    const { user, logout } = useAuth();
+
+    const handleLogout = () => {
         logout();
         cambiarVista("Inicio");
-    }
+    };
+
     return (
         <div className='Menu'>
             <ul>
-                <li onClick={()=>cambiarVista("Inicio")}>Inicio</li>
-                <li onClick={()=>cambiarVista("Productos")}>Productos</li>
-                <li onClick={()=>cambiarVista("Contactos")}>Contactos</li>
-                <li onClick={()=>cambiarVista("Sucursales")}>Sucursales</li>
+                <li onClick={() => cambiarVista("Inicio")}>Inicio</li>
+                <li onClick={() => cambiarVista("Productos")}>Productos</li>
+                <li onClick={() => cambiarVista("Contactos")}>Contactos</li>
+                <li onClick={() => cambiarVista("Sucursales")}>Sucursales</li>
 
-                {isLoggedIn ? (
+                {user ? (
                     <>
-                <li onClick={()=>cambiarVista("Carrito")}>Carrito</li>
-                <li onClick={()=>cambiarVista("Usuarios")}>Usuarios</li>
-                <li onClick={()=>cambiarVista("Categorias")}>Categorias</li>
-                <li onClick={handleLogout}>Cerrar Sesion</li>
+                        <li onClick={() => cambiarVista("Carrito")}>Carrito</li>
+                        <li onClick={() => cambiarVista("Usuarios")}>Usuarios</li>
+                        <li onClick={() => cambiarVista("Categorias")}>Categorias</li>
+                        <li onClick={handleLogout}>Cerrar Sesion</li>
                     </>
-                ):(
-
-                <li onClick={()=>cambiarVista("InicioS")}>Inicio Sesion</li>
+                ) : (
+                    <li onClick={() => cambiarVista("InicioS")}>Inicio Sesion</li>
                 )}
             </ul>
         </div>
-    )
+    );
 }
 
 function Redes(){

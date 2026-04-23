@@ -1,30 +1,68 @@
 import { useState } from "react";
-import { useAuth } from "./AuthContext"
-import api from "./services/api";
-import axios from "axios";
+import './login.css';
 
-const Login =({cheVista})=>{
-    const{login}=useAuth();
+const InicioS = () => {
 
-    const[username, setUsername]=useState('');
-    const[password, setPassword]=useState('');
-    
-    const handleSubmit = async (e) =>{
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const credenciales ={username, password};
-        try{
-            const respuesta=await api.post('/auth/login/', credenciales);
-            if(respuesta.data.token){
-                console.log(respuesta.data.token);
-                alert('Autenticacion Autorizada');
-            }else{
-                alert('Credenciales invalidas');    
+
+        try {
+            const res = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+
+            const data = await res.json();
+
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                alert('Login correcto');
+            } else {
+                alert('Credenciales incorrectas');
             }
-        }catch(error){
-            alert('Error:',error);
-            console.error("Error:",error);
+
+        } catch (error) {
+            console.log(error);
+            alert('Error en el servidor');
         }
     };
-}
 
-export default Login;
+    return (
+        <div className="login-wrapper">
+
+            <form className="login-form" onSubmit={handleLogin}>
+
+                <input
+                    type="text"
+                    placeholder="ejemplo@correo"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <input
+                    type="password"
+                    placeholder="Contraseña"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button type="submit">
+                    Entrar
+                </button>
+
+            </form>
+
+        </div>
+    );
+};
+
+export default InicioS;

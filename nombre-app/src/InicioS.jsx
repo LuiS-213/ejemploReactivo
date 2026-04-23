@@ -1,60 +1,180 @@
 import { useState } from "react";
-import { useAuth } from "./AuthContext"
-import axios from "axios";
+import { useAuth } from "./AuthContext";
 import api from "./services/api";
-import './login.css'
+import './login.css';
 
-const Login =({cheVista})=>{
-    const{login}=useAuth();
+const Login = ({ chVista }) => {
 
-    const[username, setUsername]=useState('');
-    const[password, setPassword]=useState('');
-    
-    const handleSubmit = async (e) =>{
+    const { login } = useAuth();
+
+    const [modo, setModo] = useState("login");
+
+    // login
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    // registro
+    const [nombre, setNombre] = useState('');
+    const [direccion, setDireccion] = useState('');
+    const [telefono, setTelefono] = useState('');
+
+    // 🔐 LOGIN
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const credenciales ={username, password};
-        try{
-            const respuesta=await api.post('/auth/login/', credenciales);
-            if(respuesta.data.token){
-                login(respuesta.data.token)
-                alert('Autenticacion Autorizada');
-                console.log(respuesta.data.token)
-                cheVista('Inicio');
-            }else{
-                alert('Credenciales invalidas');    
+
+        try {
+            const respuesta = await api.post('/login', {
+                email,
+                password
+            });
+
+            if (respuesta.data.token) {
+
+                login(respuesta.data.token);
+
+                const payload = JSON.parse(
+                    atob(respuesta.data.token.split('.')[1])
+                );
+
+                alert('Autenticación autorizada');
+
+                if (payload.rol === 'admin') {
+                    chVista('Admin');
+                } else {
+                    chVista('Inicio');
+                }
+
+            } else {
+                alert('Credenciales inválidas');
             }
-        }catch(error){
-            alert('Error:',error);
-            console.error("Error:",error);
+
+        } catch (error) {
+            alert('Error al iniciar sesión');
+            console.error(error);
         }
     };
 
+    // 📝 REGISTRO
+   const handleRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+        await api.post('/usuarios', {
+            nombre,
+            direccion,
+            telefono,
+            email,
+            password,
+            rol: 'cliente',
+            fecha_registro: new Date()
+        });
+
+        alert('Cuenta creada correctamente');
+
+        // limpiar campos
+        setNombre('');
+        setDireccion('');
+        setTelefono('');
+        setEmail('');
+        setPassword('');
+
+        // volver al login vacío
+        setModo("login");
+
+    } catch (error) {
+        alert('Error al registrar');
+        console.error(error);
+    }
+};
+
     return (
-    <div className="login-wrapper">
-        <form className="login-form" onSubmit={handleSubmit}>
-            
-            <input 
-                type="text" 
-                placeholder="ejemplo@correo"
-                value={username}
-                onChange={(e)=>setUsername(e.target.value)}
-            />
+        <div className="login-wrapper">
 
-            <input 
-                type="password" 
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-            />
+            {modo === "login" ? (
 
-            <button type="submit">
-                Entrar
-            </button>
+                <form className="login-form" onSubmit={handleSubmit}>
 
-        </form>
-    </div>
-);
-}
+                    <h2>Iniciar Sesión</h2>
 
+                    <input
+                        type="text"
+                        placeholder="Correo"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+
+                    <button type="submit">
+                        Entrar
+                    </button>
+
+                    <p onClick={() => setModo("registro")}>
+                        ¿No tienes cuenta? Regístrate
+                    </p>
+
+                </form>
+
+            ) : (
+
+                <form className="login-form" onSubmit={handleRegister}>
+
+                    <h2>Crear Cuenta</h2>
+
+                    <input
+                        type="text"
+                        placeholder="Nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="Dirección"
+                        value={direccion}
+                        onChange={(e) => setDireccion(e.target.value)}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="Teléfono"
+                        value={telefono}
+                        onChange={(e) => setTelefono(e.target.value)}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="Correo"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+
+                    <button type="submit">
+                        Registrarse
+                    </button>
+
+                    <p onClick={() => setModo("login")}>
+                        Ya tengo cuenta
+                    </p>
+
+                </form>
+
+            )}
+
+        </div>
+    );
+};
 
 export default Login;
