@@ -1,4 +1,4 @@
-import './tarhet.css';
+import './products.css';
 import { useEffect, useState } from 'react';
 import { useAuth } from './AuthContext';
 import api from './services/api';

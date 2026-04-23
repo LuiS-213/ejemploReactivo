@@ -1,0 +1,103 @@
+/* Grid de productos */
+.cuadro {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-top: 40px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* Card */
+.tarjetas {
+    width: 260px;
+    height: 300px; /* 👈 altura fija */
+    padding: 20px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    text-align: center;
+
+    transition: 0.3s;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* Hover elegante */
+.tarjetas:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+    border: 1px solid rgba(99,102,241,0.4);
+}
+
+/* Títulos */
+.tarjetas h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.tarjetas p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+}
+
+/* Precio */
+.tarjetas h3 {
+    color: #60a5fa;
+    margin: 10px 0;
+}
+
+/* Contenedor botones */
+.tarjetas button {
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+/* BOTÓN EDITAR */
+.tarjetas button:first-of-type {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251,191,36,0.4);
+}
+
+.tarjetas button:first-of-type:hover {
+    background: #fbbf24;
+    color: black;
+}
+
+/* BOTÓN ELIMINAR */
+.tarjetas button:last-of-type {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239,68,68,0.4);
+}
+
+.tarjetas button:last-of-type:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* BOTÓN CLIENTE (carrito) */
+.tarjetas button:only-child {
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+    color: white;
+}
+
+.tarjetas button:only-child:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(99,102,241,0.4);
+}

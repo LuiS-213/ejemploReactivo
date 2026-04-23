@@ -1,59 +1,102 @@
-/* Contenedor principal */
-.Main {
-    padding: 40px;
+.carrito-container {
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
     text-align: center;
-    color: white;
 }
 
-/* Contenedor de todos los carritos */
-.carts {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    align-items: center;
+.titulo-carrito {
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #fff;
 }
 
-/* Card del carrito */
-.carts article {
-    background-color: #1e1e1e;
-    padding: 25px;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 900px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
-
-/* Títulos del carrito */
-.carts article > h2 {
-    margin: 5px 0;
-}
-
-/* Contenedor de productos */
-.cosas {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
+/* GRID del carrito */
+.carrito-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
     justify-content: center;
+    width: 100%;
 }
 
-/* Card individual de producto */
-.cosas article {
-    background-color: #2c2c2c;
-    padding: 15px;
-    border-radius: 10px;
-    width: 150px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    transition: transform 0.2s ease;
+/* CARD */
+.cart-card {
+    width: 100%;
+    max-width: 260px;
+    margin: auto;
+
+    padding: 20px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    transition: 0.3s;
 }
 
-/* Hover bonito */
-.cosas article:hover {
+.cart-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+}
+
+/* TEXTOS */
+.cart-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cart-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin: 4px 0;
+}
+
+/* TOTAL */
+.total {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #60a5fa;
+    font-weight: bold;
+}
+
+/* BOTÓN ELIMINAR */
+.btn-eliminar {
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: 8px;
+
+    border: 1px solid rgba(239,68,68,0.4);
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-eliminar:hover {
+    background: #ef4444;
+    color: white;
     transform: scale(1.05);
 }
 
-/* Texto producto */
-.cosas h2 {
-    font-size: 16px;
-    margin: 5px 0;
+/* ESTADO VACÍO */
+.empty {
+    color: rgba(255,255,255,0.7);
+    margin-top: 20px;
+}
+
+/* LOADING */
+.loading {
+    color: white;
+    margin-top: 20px;
 }

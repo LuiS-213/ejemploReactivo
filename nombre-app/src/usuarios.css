@@ -1,22 +1,67 @@
-.icono{
-
-    height:40px;
+/* Iconos */
+.icono {
+    height: 36px;
     width: auto;
-
+    transition: 0.2s;
 }
 
-.main{
-    justify-content: flex-start;
-    padding: 50px;
-    color: white;
+.icono:hover {
+    transform: scale(1.15);
+    filter: brightness(1.2);
+}
+
+/* Contenedor principal */
+.main {
+    padding: 40px;
     display: flex;
-    text-align: center;
-
+    flex-direction: column; /* 👈 clave */
+    align-items: center;    /* 👈 centra horizontal */
+    justify-content: flex-start;
+    gap: 30px;              /* espacio entre form y tabla */
+    color: white;
 }
 
-.tabla-usuarios{
-    align-items: center;
-    vertical-align: middle;
-    align-content: center;
-    margin: 60px;
+/* Tabla estilo glass */
+.tabla-usuarios {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Encabezado */
+.tabla-usuarios thead {
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+}
+
+.tabla-usuarios th {
+    padding: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Filas */
+.tabla-usuarios td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Hover filas */
+.tabla-usuarios tbody tr:hover {
+    background: rgba(255,255,255,0.08);
+    transition: 0.2s;
+}
+
+/* Última fila sin borde */
+.tabla-usuarios tbody tr:last-child td {
+    border-bottom: none;
 }

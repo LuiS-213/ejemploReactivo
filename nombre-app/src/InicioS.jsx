@@ -17,6 +17,7 @@ const Login = ({ chVista }) => {
     const [nombre, setNombre] = useState('');
     const [direccion, setDireccion] = useState('');
     const [telefono, setTelefono] = useState('');
+    const [rol, setRol] = useState('cliente'); // 👈 nuevo estado
 
     // 🔐 LOGIN
     const handleSubmit = async (e) => {
@@ -55,37 +56,38 @@ const Login = ({ chVista }) => {
     };
 
     // 📝 REGISTRO
-   const handleRegister = async (e) => {
-    e.preventDefault();
+    const handleRegister = async (e) => {
+        e.preventDefault();
 
-    try {
-        await api.post('/usuarios', {
-            nombre,
-            direccion,
-            telefono,
-            email,
-            password,
-            rol: 'cliente',
-            fecha_registro: new Date()
-        });
+        try {
+            await api.post('/usuarios', {
+                nombre,
+                direccion,
+                telefono,
+                email,
+                password,
+                rol, // 👈 ahora es dinámico
+                fecha_registro: new Date()
+            });
 
-        alert('Cuenta creada correctamente');
+            alert('Cuenta creada correctamente');
 
-        // limpiar campos
-        setNombre('');
-        setDireccion('');
-        setTelefono('');
-        setEmail('');
-        setPassword('');
+            // limpiar campos
+            setNombre('');
+            setDireccion('');
+            setTelefono('');
+            setEmail('');
+            setPassword('');
+            setRol('cliente'); // reset
 
-        // volver al login vacío
-        setModo("login");
+            // volver al login
+            setModo("login");
 
-    } catch (error) {
-        alert('Error al registrar');
-        console.error(error);
-    }
-};
+        } catch (error) {
+            alert('Error al registrar');
+            console.error(error);
+        }
+    };
 
     return (
         <div className="login-wrapper">
@@ -160,6 +162,12 @@ const Login = ({ chVista }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+
+                    {/* 👇 Selector de rol */}
+                    <select value={rol} onChange={(e) => setRol(e.target.value)}>
+                        <option value="cliente">Cliente</option>
+                        <option value="admin">Admin</option>
+                    </select>
 
                     <button type="submit">
                         Registrarse

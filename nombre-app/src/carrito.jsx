@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
 import api from "./services/api";
-import './carrito.css';
+import "./carrito.css";
 
 function Carrito() {
-
     const [detalles, setDetalles] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const obtenerDatos = async () => {
         try {
-
-            const response = await api.get('/detalles');
+            const response = await api.get("/detalles");
             setDetalles(response.data);
-
         } catch (error) {
             console.error(error);
-
         } finally {
             setLoading(false);
         }
@@ -28,41 +24,53 @@ function Carrito() {
     const eliminar = async (id) => {
         try {
             await api.delete(`/detalle/${id}`);
-            obtenerDatos();
+            setDetalles((prev) => prev.filter((item) => item.id !== id));
         } catch (error) {
             console.error(error);
         }
     };
 
-    if (loading) return <p>Cargando...</p>;
+    if (loading) return <p className="loading">Cargando...</p>;
 
     return (
-        <main className="Main">
+        <main className="carrito-container">
 
-            <h1>Mi Carrito</h1>
+            <h1 className="titulo-carrito">Mi Carrito</h1>
 
-            {detalles.map((item) => (
+            {detalles.length === 0 ? (
+                <p className="empty">Tu carrito está vacío</p>
+            ) : (
+                <div className="carrito-grid">
 
-                <div key={item.id} className="carts">
+                    {detalles.map((item) => (
+                        <div key={item.id} className="cart-card">
 
-                    <h2>{item.producto?.nombre}</h2>
+                            <h2>{item.producto?.nombre}</h2>
 
-                    <p>Cantidad: {item.cantidad}</p>
+                            <p>
+                                Cantidad: <span>{item.cantidad}</span>
+                            </p>
 
-                    <p>Precio Unitario: $ {item.precio_unitario}</p>
+                            <p>
+                                Precio unitario: $ {item.precio_unitario}
+                            </p>
 
-                    <p>
-                        Total: $
-                        {item.cantidad * item.precio_unitario}
-                    </p>
+                            <p className="total">
+                                Total: $ {item.cantidad * item.precio_unitario}
+                            </p>
 
-                    <button onClick={() => eliminar(item.id)}>
-                        Quitar
-                    </button>
+                            <button
+                                className="btn-eliminar"
+                                onClick={() => eliminar(item.id)}
+                            >
+                                Quitar
+                            </button>
+
+                        </div>
+                    ))}
 
                 </div>
-
-            ))}
+            )}
 
         </main>
     );

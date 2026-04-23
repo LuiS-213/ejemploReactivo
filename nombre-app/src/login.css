@@ -69,3 +69,29 @@
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(99,102,241,0.4);
 }
+
+/* Select (rol) con mismo estilo que inputs */
+.login-form select {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+    background: rgba(255,255,255,0.1);
+    color: white;
+
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+/* Opciones del select */
+.login-form select option {
+    background: #0f172a;
+    color: white;
+}
+
+/* Focus igual que inputs */
+.login-form select:focus {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.02);
+}
